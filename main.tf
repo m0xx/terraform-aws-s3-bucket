@@ -73,7 +73,6 @@ resource "aws_s3_bucket" "default" {
     }
   }
 
-  tags = module.label.tags
   dynamic "cors_rule" {
     for_each = var.cors_rules
 
@@ -85,6 +84,8 @@ resource "aws_s3_bucket" "default" {
       max_age_seconds = cors_rule.value.max_age_seconds
     }
   }
+
+  tags = module.label.tags
 }
 
 module "s3_user" {
